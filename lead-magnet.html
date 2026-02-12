@@ -4,272 +4,313 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Houston SMB IT Security Checklist — Other Guys IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --navy: #0a1628;
-    --navy-light: #121f36;
-    --navy-mid: #1a2d4a;
-    --accent: #3b82f6;
-    --accent-light: #60a5fa;
-    --white: #f1f5f9;
-    --gray: #94a3b8;
-    --red: #ef4444;
-    --yellow: #eab308;
-    --green: #22c55e;
-  }
+:root {
+  --bg: #0a0a0a;
+  --bg-alt: #111218;
+  --accent: #2d40ea;
+  --accent-2: #2d62ff;
+  --accent-light: #4d65ff;
+  --text: #ffffff;
+  --text-body: rgba(255,255,255,0.7);
+  --text-muted: rgba(255,255,255,0.5);
+  --card-bg: rgba(255,255,255,0.05);
+  --card-border: rgba(255,255,255,0.1);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --green: #22c55e;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, 'Helvetica Neue', Helvetica, Ubuntu, 'Segoe UI', Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
 
-  body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    background: var(--navy);
-    color: var(--white);
-    line-height: 1.6;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
+@media print {
+  .page { page-break-after: always; }
+  .page:last-child { page-break-after: avoid; }
+}
 
-  @media print {
-    .page { page-break-after: always; }
-    .page:last-child { page-break-after: avoid; }
-    body { background: var(--navy); }
-  }
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 50px;
+}
 
-  .page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 60px 50px;
-    min-height: auto;
-  }
+/* COVER */
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+  padding: 60px 50px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://cdn.prod.website-files.com/66b81db7f5f5d1125a45b2ec/66c4502f9b6e6c28cfd6c852_6521d25d4672bd4a0d1ac5ab_Outer%20Space%20Photo.jpg') center/cover no-repeat;
+  opacity: 0.35;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.95) 100%);
+}
+.cover > * { position: relative; z-index: 1; }
 
-  /* COVER PAGE */
-  .cover {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 50vh;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--navy-mid);
-    margin-bottom: 40px;
-  }
+.cover .logo-text {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 48px;
+}
 
-  .cover .logo-text {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--accent-light);
-    margin-bottom: 40px;
-  }
+.cover h1 {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.12;
+  margin-bottom: 16px;
+  background: linear-gradient(37deg, #fff, #656565);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-  .cover h1 {
-    font-size: 42px;
-    font-weight: 900;
-    line-height: 1.15;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, var(--white), var(--accent-light));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+.cover .subtitle {
+  font-size: 20px;
+  color: var(--text-body);
+  margin-bottom: 60px;
+  font-weight: 400;
+}
 
-  .cover .subtitle {
-    font-size: 20px;
-    color: var(--gray);
-    margin-bottom: 60px;
-    font-weight: 400;
-  }
+.cover .tagline {
+  font-size: 12px;
+  color: var(--accent-light);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-top: 1px solid var(--card-border);
+  padding-top: 28px;
+  margin-top: auto;
+}
 
-  .cover .tagline {
-    font-size: 13px;
-    color: var(--accent-light);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-top: 1px solid var(--navy-mid);
-    padding-top: 30px;
-    margin-top: auto;
-  }
+.cover .site {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
 
-  .cover .site {
-    font-size: 14px;
-    color: var(--gray);
-    margin-top: 8px;
-  }
+/* SECTION HEADERS */
+.section-header {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text);
+}
 
-  /* CHECKLIST ITEMS */
-  .section-header {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: var(--white);
-  }
+.section-intro {
+  color: var(--text-body);
+  font-size: 15px;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
 
-  .section-intro {
-    color: var(--gray);
-    font-size: 15px;
-    margin-bottom: 40px;
-    max-width: 600px;
-  }
+/* CHECKLIST ITEMS */
+.checklist-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+  margin-bottom: 20px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s;
+}
+.checklist-item:hover { background: rgba(255,255,255,0.08); }
 
-  .checklist-item {
-    background: var(--navy-light);
-    border: 1px solid var(--navy-mid);
-    border-radius: 12px;
-    padding: 28px 30px;
-    margin-bottom: 20px;
-    position: relative;
-  }
+.checklist-item .number {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: var(--accent);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .checklist-item .number {
-    position: absolute;
-    top: -12px;
-    left: 24px;
-    background: var(--accent);
-    color: white;
-    font-size: 13px;
-    font-weight: 700;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.checklist-item h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  .checklist-item h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+.checklist-item .risk {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
 
-  .checklist-item .risk {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
+.risk-high { background: rgba(239,68,68,0.15); color: var(--red); }
+.risk-med { background: rgba(234,179,8,0.15); color: var(--yellow); }
+.risk-low { background: rgba(34,197,94,0.15); color: var(--green); }
 
-  .risk-high { background: rgba(239,68,68,0.15); color: var(--red); }
-  .risk-med { background: rgba(234,179,8,0.15); color: var(--yellow); }
-  .risk-low { background: rgba(34,197,94,0.15); color: var(--green); }
+.checklist-item .why {
+  font-size: 13px;
+  color: var(--accent-light);
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
 
-  .checklist-item .why {
-    font-size: 13px;
-    color: var(--accent-light);
-    font-weight: 600;
-    margin: 8px 0 4px;
-  }
+.checklist-item p {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.65;
+}
 
-  .checklist-item p {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.65;
-  }
+.checkbox-row {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
 
-  .checkbox-row {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--gray);
-  }
+.checkbox-row .box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--card-border);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
 
-  .checkbox-row .box {
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--navy-mid);
-    border-radius: 4px;
-    flex-shrink: 0;
-  }
+/* SCORE PAGE */
+.score-section {
+  text-align: center;
+  padding-top: 40px;
+}
 
-  /* SCORE PAGE */
-  .score-section {
-    text-align: center;
-    padding-top: 40px;
-  }
+.score-section h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text);
+}
 
-  .score-section h2 {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
+.score-section .intro {
+  color: var(--text-body);
+  margin-bottom: 40px;
+  font-size: 15px;
+}
 
-  .score-section .intro {
-    color: var(--gray);
-    margin-bottom: 40px;
-    font-size: 15px;
-  }
+.score-tier {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px 30px;
+  margin-bottom: 16px;
+  text-align: left;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
-  .score-tier {
-    background: var(--navy-light);
-    border: 1px solid var(--navy-mid);
-    border-radius: 12px;
-    padding: 24px 30px;
-    margin-bottom: 16px;
-    text-align: left;
-  }
+.score-tier h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
 
-  .score-tier h4 {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
+.score-tier p {
+  font-size: 14px;
+  color: var(--text-body);
+}
 
-  .score-tier p {
-    font-size: 14px;
-    color: var(--gray);
-  }
+.cta-box {
+  background: var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  margin-top: 40px;
+  text-align: center;
+}
 
-  .cta-box {
-    background: linear-gradient(135deg, var(--accent), #2563eb);
-    border-radius: 16px;
-    padding: 40px;
-    margin-top: 40px;
-    text-align: center;
-  }
+.cta-box h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--text);
+}
 
-  .cta-box h3 {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 8px;
-  }
+.cta-box p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+}
 
-  .cta-box p {
-    font-size: 15px;
-    opacity: 0.9;
-    margin-bottom: 20px;
-  }
+.cta-btn {
+  display: inline-block;
+  background: white;
+  color: var(--bg);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
 
-  .cta-btn {
-    display: inline-block;
-    background: white;
-    color: var(--navy);
-    font-size: 15px;
-    font-weight: 700;
-    padding: 14px 36px;
-    border-radius: 8px;
-    text-decoration: none;
-  }
+.cta-btn:hover { opacity: 0.9; }
 
-  .cta-btn:hover { opacity: 0.95; }
+.footer-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
 
-  .footer-note {
-    text-align: center;
-    font-size: 12px;
-    color: var(--gray);
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid var(--navy-mid);
-  }
+.footer-note strong { color: var(--text-body); }
+
+@media (max-width: 600px) {
+  .page { padding: 40px 20px; }
+  .cover { min-height: 70vh; padding: 40px 20px; }
+  .cover h1 { font-size: 30px; }
+  .checklist-item { padding: 24px 20px; }
+}
 </style>
 </head>
 <body>
@@ -331,7 +372,6 @@
 
 <!-- CHECKLIST PAGE 2: Items 6-10 -->
 <div class="page">
-
   <div class="checklist-item">
     <div class="number">6</div>
     <h3>Email Security <span class="risk risk-high">🔴 High Risk</span></h3>
@@ -371,7 +411,6 @@
     <p>When (not if) something goes wrong, panic is not a plan. You need a documented, tested playbook: who gets called first, how do you contain the breach, who talks to customers, where are the recovery procedures. Run a tabletop exercise with your team at least once a year. The companies that recover fast are the ones that practiced.</p>
     <div class="checkbox-row"><div class="box"></div> We have a written incident response plan and have rehearsed it in the last 12 months.</div>
   </div>
-
 </div>
 
 <!-- SCORE PAGE -->
