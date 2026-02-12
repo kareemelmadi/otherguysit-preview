@@ -5,41 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Houston SMB IT Security Checklist — Other Guys IT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --bg: #0a0a0a;
-  --bg-alt: #111218;
+  --bg-alt: #0e0e12;
   --accent: #2d40ea;
   --accent-2: #2d62ff;
   --accent-light: #4d65ff;
   --text: #ffffff;
-  --text-body: rgba(255,255,255,0.7);
-  --text-muted: rgba(255,255,255,0.5);
-  --card-bg: rgba(255,255,255,0.05);
-  --card-border: rgba(255,255,255,0.1);
-  --radius: 12px;
-  --radius-lg: 20px;
+  --text-body: rgba(255,255,255,0.72);
+  --text-muted: rgba(255,255,255,0.45);
+  --card-bg: rgba(255,255,255,0.04);
+  --card-bg-hover: rgba(255,255,255,0.07);
+  --card-border: rgba(255,255,255,0.08);
+  --radius: 14px;
+  --radius-lg: 22px;
   --red: #ef4444;
   --yellow: #eab308;
   --green: #22c55e;
 }
 
 body {
-  font-family: 'Inter', -apple-system, 'Helvetica Neue', Helvetica, Ubuntu, 'Segoe UI', Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
+  overflow-x: hidden;
 }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media print {
   .page { page-break-after: always; }
   .page:last-child { page-break-after: avoid; }
+  .reveal { opacity: 1; transform: none; }
 }
 
 .page {
@@ -48,15 +58,15 @@ body {
   padding: 60px 50px;
 }
 
-/* COVER */
+/* ── COVER ── */
 .cover {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 80vh;
-  padding: 60px 50px 60px;
+  min-height: 90vh;
+  padding: 60px 50px;
   position: relative;
   overflow: hidden;
 }
@@ -65,31 +75,39 @@ body {
   position: absolute;
   inset: 0;
   background: url('https://cdn.prod.website-files.com/66b81db7f5f5d1125a45b2ec/66c4502f9b6e6c28cfd6c852_6521d25d4672bd4a0d1ac5ab_Outer%20Space%20Photo.jpg') center/cover no-repeat;
-  opacity: 0.35;
+  opacity: 0.45;
+  transform: scale(1.05);
 }
 .cover::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.95) 100%);
+  background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.97) 100%);
 }
 .cover > * { position: relative; z-index: 1; }
 
-.cover .logo-text {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--accent-light);
+.cover .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 48px;
 }
+.cover .brand img { height: 36px; }
+.cover .brand-text {
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.cover .brand-text .bold { font-weight: 800; }
+.cover .brand-text .light { font-weight: 300; opacity: 0.85; }
 
 .cover h1 {
-  font-size: 44px;
+  font-size: clamp(34px, 5vw, 48px);
   font-weight: 900;
-  line-height: 1.12;
-  margin-bottom: 16px;
-  background: linear-gradient(37deg, #fff, #656565);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  background: linear-gradient(37deg, #fff 30%, #888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -102,57 +120,67 @@ body {
   font-weight: 400;
 }
 
+.cover .divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  margin: 0 auto 24px;
+  border-radius: 2px;
+}
+
 .cover .tagline {
   font-size: 12px;
   color: var(--accent-light);
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   font-weight: 700;
-  border-top: 1px solid var(--card-border);
-  padding-top: 28px;
   margin-top: auto;
 }
 
 .cover .site {
   font-size: 14px;
   color: var(--text-muted);
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-/* SECTION HEADERS */
+/* ── SECTION HEADERS ── */
 .section-header {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
   margin-bottom: 8px;
   color: var(--text);
+  background: linear-gradient(37deg, #fff, #777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .section-intro {
   color: var(--text-body);
   font-size: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
   max-width: 600px;
 }
 
-/* CHECKLIST ITEMS */
+/* ── CHECKLIST ITEMS ── */
 .checklist-item {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 28px 30px;
-  margin-bottom: 20px;
+  padding: 30px 32px;
+  margin-bottom: 18px;
   position: relative;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: background 0.2s;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s;
 }
-.checklist-item:hover { background: rgba(255,255,255,0.08); }
+.checklist-item:hover { background: var(--card-bg-hover); border-color: rgba(255,255,255,0.12); }
 
 .checklist-item .number {
   position: absolute;
   top: -12px;
   left: 24px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: white;
   font-size: 13px;
   font-weight: 700;
@@ -162,6 +190,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(45,64,234,0.3);
 }
 
 .checklist-item h3 {
@@ -175,32 +204,34 @@ body {
 }
 
 .checklist-item .risk {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
   border-radius: 20px;
   white-space: nowrap;
+  letter-spacing: 0.5px;
 }
 
-.risk-high { background: rgba(239,68,68,0.15); color: var(--red); }
-.risk-med { background: rgba(234,179,8,0.15); color: var(--yellow); }
-.risk-low { background: rgba(34,197,94,0.15); color: var(--green); }
+.risk-high { background: rgba(239,68,68,0.12); color: var(--red); }
+.risk-med { background: rgba(234,179,8,0.12); color: var(--yellow); }
 
 .checklist-item .why {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--accent-light);
-  font-weight: 600;
-  margin: 8px 0 4px;
+  font-weight: 700;
+  margin: 10px 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .checklist-item p {
   font-size: 14px;
   color: var(--text-body);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 .checkbox-row {
-  margin-top: 14px;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -209,24 +240,29 @@ body {
 }
 
 .checkbox-row .box {
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--card-border);
-  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 5px;
   flex-shrink: 0;
+  transition: border-color 0.2s;
 }
+.checkbox-row:hover .box { border-color: var(--accent-light); }
 
-/* SCORE PAGE */
+/* ── SCORE PAGE ── */
 .score-section {
   text-align: center;
   padding-top: 40px;
 }
 
 .score-section h2 {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 800;
   margin-bottom: 12px;
-  color: var(--text);
+  background: linear-gradient(37deg, #fff, #777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .score-section .intro {
@@ -239,12 +275,14 @@ body {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 24px 30px;
-  margin-bottom: 16px;
+  padding: 26px 30px;
+  margin-bottom: 14px;
   text-align: left;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s;
 }
+.score-tier:hover { border-color: rgba(255,255,255,0.14); }
 
 .score-tier h4 {
   font-size: 17px;
@@ -256,60 +294,72 @@ body {
 .score-tier p {
   font-size: 14px;
   color: var(--text-body);
+  line-height: 1.65;
 }
 
 .cta-box {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--accent-3, #1a2dc7));
   border-radius: var(--radius-lg);
-  padding: 44px;
-  margin-top: 40px;
+  padding: 48px;
+  margin-top: 44px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
+.cta-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08) 0%, transparent 60%);
+}
+.cta-box > * { position: relative; }
 
 .cta-box h3 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: var(--text);
 }
 
 .cta-box p {
   font-size: 15px;
   color: rgba(255,255,255,0.85);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .cta-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: white;
   color: var(--bg);
   font-family: inherit;
   font-size: 15px;
   font-weight: 700;
-  padding: 14px 36px;
-  border-radius: var(--radius);
+  padding: 15px 36px;
+  border-radius: 50px;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
-
-.cta-btn:hover { opacity: 0.9; }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.4); }
 
 .footer-note {
   text-align: center;
   font-size: 12px;
   color: var(--text-muted);
-  margin-top: 30px;
-  padding-top: 20px;
+  margin-top: 36px;
+  padding-top: 24px;
   border-top: 1px solid var(--card-border);
 }
-
 .footer-note strong { color: var(--text-body); }
 
 @media (max-width: 600px) {
   .page { padding: 40px 20px; }
-  .cover { min-height: 70vh; padding: 40px 20px; }
+  .cover { min-height: 80vh; padding: 40px 20px; }
   .cover h1 { font-size: 30px; }
   .checklist-item { padding: 24px 20px; }
+  .cta-box { padding: 36px 24px; }
 }
 </style>
 </head>
@@ -317,99 +367,102 @@ body {
 
 <!-- COVER PAGE -->
 <div class="page cover">
-  <img src="logos/logo-main.png" alt="Other Guys IT" style="height: 40px; width: auto; margin-bottom: 16px;">
-  <div class="logo-text" style="margin-bottom: 30px;">Other Guys IT</div>
+  <div class="brand">
+    <img src="logos/logo-main.png" alt="Other Guys IT">
+    <div class="brand-text"><span class="bold">OTHER</span><span class="light">GUYSIT</span></div>
+  </div>
   <h1>The Houston SMB<br>IT Security Checklist</h1>
   <p class="subtitle">10 things every small business should check — today.</p>
+  <div class="divider"></div>
   <p class="tagline">Not Your Average IT Guys</p>
-  <p class="site">otherguys.tech &nbsp;|&nbsp; (972) 244-3009 &nbsp;|&nbsp; The Woodlands, TX</p>
+  <p class="site">otherguys.tech &nbsp;·&nbsp; (972) 244-3009 &nbsp;·&nbsp; The Woodlands, TX</p>
 </div>
 
 <!-- CHECKLIST PAGE 1: Items 1-5 -->
 <div class="page">
-  <h2 class="section-header">The Checklist</h2>
-  <p class="section-intro">Go through each item honestly. Check the box if you're confident it's handled. No check = action item. Simple as that.</p>
+  <h2 class="section-header reveal">The Checklist</h2>
+  <p class="section-intro reveal">Go through each item honestly. Check the box if you're confident it's handled. No check = action item.</p>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">1</div>
-    <h3>Password Policies <span class="risk risk-high">🔴 High Risk</span></h3>
-    <p class="why">Why it matters:</p>
+    <h3>Password Policies <span class="risk risk-high">HIGH RISK</span></h3>
+    <p class="why">Why it matters</p>
     <p>Weak or reused passwords are the #1 way attackers get into business systems. If your team is using "Company2024!" across multiple platforms, you're one breach away from a very bad week. Enforce minimum 14-character passwords, ban common patterns, and require a password manager company-wide — not optional, mandatory.</p>
     <div class="checkbox-row"><div class="box"></div> We enforce a password policy with complexity requirements and a password manager.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">2</div>
-    <h3>Multi-Factor Authentication <span class="risk risk-high">🔴 High Risk</span></h3>
-    <p class="why">Why it matters:</p>
+    <h3>Multi-Factor Authentication <span class="risk risk-high">HIGH RISK</span></h3>
+    <p class="why">Why it matters</p>
     <p>MFA blocks over 99% of automated account compromise attacks. If someone gets your password, MFA is the lock on the second door. Enable it on every account that supports it — email, cloud apps, VPN, banking. Use authenticator apps or hardware keys; SMS codes are better than nothing but not great.</p>
     <div class="checkbox-row"><div class="box"></div> MFA is enabled on all critical business accounts (email, cloud, banking, admin portals).</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">3</div>
-    <h3>Endpoint Protection <span class="risk risk-high">🔴 High Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>Every laptop, desktop, and phone that touches your network is an entry point. Free antivirus isn't cutting it in 2026. You need EDR (Endpoint Detection & Response) that monitors behavior, not just known signatures. Make sure every device is enrolled, monitored, and has remote-wipe capability for when someone inevitably loses a laptop.</p>
+    <h3>Endpoint Protection <span class="risk risk-high">HIGH RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>Every laptop, desktop, and phone that touches your network is an entry point. Free antivirus isn't cutting it in 2026. You need EDR (Endpoint Detection & Response) that monitors behavior, not just known signatures. Make sure every device is enrolled, monitored, and has remote-wipe capability.</p>
     <div class="checkbox-row"><div class="box"></div> All company devices have managed EDR/antivirus with centralized monitoring.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">4</div>
-    <h3>Backup Strategy <span class="risk risk-high">🔴 High Risk</span></h3>
-    <p class="why">Why it matters:</p>
+    <h3>Backup Strategy <span class="risk risk-high">HIGH RISK</span></h3>
+    <p class="why">Why it matters</p>
     <p>Ransomware doesn't care how big your company is. If you can't restore from backup, you're either paying or starting over. Follow the 3-2-1 rule: 3 copies of data, on 2 different media types, with 1 offsite. Test your restores quarterly — a backup you've never tested is a backup that doesn't exist.</p>
     <div class="checkbox-row"><div class="box"></div> We have automated backups with offsite/cloud copies and have tested a restore in the last 90 days.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">5</div>
-    <h3>Firewall Configuration <span class="risk risk-med">🟡 Medium Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>A firewall that was set up three years ago and never touched since is barely better than no firewall. Rules drift, ports get opened for "temporary" reasons and never closed, and firmware goes unpatched. Review your firewall rules quarterly, enable intrusion prevention, and make sure logging is actually turned on and being reviewed.</p>
+    <h3>Firewall Configuration <span class="risk risk-med">MEDIUM RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>A firewall that was set up three years ago and never touched since is barely better than no firewall. Rules drift, ports get opened for "temporary" reasons and never closed. Review your firewall rules quarterly, enable intrusion prevention, and make sure logging is turned on and being reviewed.</p>
     <div class="checkbox-row"><div class="box"></div> Firewall rules have been reviewed in the last 90 days and firmware is current.</div>
   </div>
 </div>
 
 <!-- CHECKLIST PAGE 2: Items 6-10 -->
 <div class="page">
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">6</div>
-    <h3>Email Security <span class="risk risk-high">🔴 High Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>90% of cyberattacks start with an email. Phishing has gotten scary good — AI-generated emails that look exactly like your vendor's invoices. Deploy SPF, DKIM, and DMARC records (ask your IT person — they'll know). Layer on advanced threat protection that scans links and attachments before they hit inboxes.</p>
+    <h3>Email Security <span class="risk risk-high">HIGH RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>90% of cyberattacks start with an email. Phishing has gotten scary good — AI-generated emails that look exactly like your vendor's invoices. Deploy SPF, DKIM, and DMARC records. Layer on advanced threat protection that scans links and attachments before they hit inboxes.</p>
     <div class="checkbox-row"><div class="box"></div> SPF/DKIM/DMARC are configured and we use advanced email threat filtering.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">7</div>
-    <h3>Employee Security Training <span class="risk risk-med">🟡 Medium Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>Your team is either your strongest defense or your biggest vulnerability. Annual training doesn't work — people forget everything by February. Run monthly phishing simulations and short micro-trainings. When someone clicks a test phish, that's not a punishment moment — it's a coaching moment. Build the culture, don't just check the box.</p>
+    <h3>Employee Security Training <span class="risk risk-med">MEDIUM RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>Your team is either your strongest defense or your biggest vulnerability. Annual training doesn't work — people forget everything by February. Run monthly phishing simulations and short micro-trainings. When someone clicks a test phish, that's a coaching moment. Build the culture.</p>
     <div class="checkbox-row"><div class="box"></div> Employees complete regular security awareness training with phishing simulations.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">8</div>
-    <h3>HIPAA / Compliance Basics <span class="risk risk-med">🟡 Medium Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>If you're in healthcare, legal, or finance in Houston, you're probably handling protected data whether you realize it or not. HIPAA fines start at $100 per violation and scale to $1.5M per category per year. At minimum: encrypt data at rest and in transit, control access with role-based permissions, and document everything. If you're not sure whether HIPAA applies to you, it probably does.</p>
+    <h3>HIPAA / Compliance Basics <span class="risk risk-med">MEDIUM RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>If you're in healthcare, legal, or finance in Houston, you're probably handling protected data. HIPAA fines start at $100 per violation and scale to $1.5M per category per year. Encrypt data at rest and in transit, control access with role-based permissions, and document everything.</p>
     <div class="checkbox-row"><div class="box"></div> We've assessed our compliance requirements and have documented policies in place.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">9</div>
-    <h3>Patch Management <span class="risk risk-med">🟡 Medium Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>Unpatched software is an open invitation. The average time between a vulnerability being disclosed and an exploit appearing is now under 15 days. Automate OS and application patching on a weekly cycle, with critical patches deployed within 48 hours. Track compliance — if even one machine is behind, that's the one that gets hit.</p>
+    <h3>Patch Management <span class="risk risk-med">MEDIUM RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>Unpatched software is an open invitation. The average time between a vulnerability being disclosed and an exploit appearing is now under 15 days. Automate OS and application patching on a weekly cycle, with critical patches deployed within 48 hours.</p>
     <div class="checkbox-row"><div class="box"></div> OS and application patches are automated and deployed within defined SLAs.</div>
   </div>
 
-  <div class="checklist-item">
+  <div class="checklist-item reveal">
     <div class="number">10</div>
-    <h3>Incident Response Plan <span class="risk risk-med">🟡 Medium Risk</span></h3>
-    <p class="why">Why it matters:</p>
-    <p>When (not if) something goes wrong, panic is not a plan. You need a documented, tested playbook: who gets called first, how do you contain the breach, who talks to customers, where are the recovery procedures. Run a tabletop exercise with your team at least once a year. The companies that recover fast are the ones that practiced.</p>
+    <h3>Incident Response Plan <span class="risk risk-med">MEDIUM RISK</span></h3>
+    <p class="why">Why it matters</p>
+    <p>When (not if) something goes wrong, panic is not a plan. You need a documented, tested playbook: who gets called first, how do you contain the breach, who talks to customers. Run a tabletop exercise at least once a year. The companies that recover fast are the ones that practiced.</p>
     <div class="checkbox-row"><div class="box"></div> We have a written incident response plan and have rehearsed it in the last 12 months.</div>
   </div>
 </div>
@@ -417,42 +470,51 @@ body {
 <!-- SCORE PAGE -->
 <div class="page">
   <div class="score-section">
-    <h2>How'd You Score?</h2>
-    <p class="intro">Count your checkboxes. Be honest — this is for you, not us.</p>
+    <h2 class="reveal">How'd You Score?</h2>
+    <p class="intro reveal">Count your checkboxes. Be honest — this is for you, not us.</p>
 
-    <div class="score-tier">
+    <div class="score-tier reveal">
       <h4>✅ 9–10 Checks: You're in Great Shape</h4>
       <p>You're ahead of 90% of Houston SMBs. Keep it up — security is maintenance, not a one-time project. Consider a penetration test to validate your defenses.</p>
     </div>
 
-    <div class="score-tier">
+    <div class="score-tier reveal">
       <h4>⚠️ 6–8 Checks: Solid Foundation, Real Gaps</h4>
-      <p>You've got the basics but there are holes that an attacker will find before you do. Prioritize your unchecked items by risk level — reds first. A quick assessment can help you build a 90-day roadmap.</p>
+      <p>You've got the basics but there are holes an attacker will find before you do. Prioritize unchecked items by risk level — reds first. A quick assessment can build a 90-day roadmap.</p>
     </div>
 
-    <div class="score-tier">
+    <div class="score-tier reveal">
       <h4>🚨 3–5 Checks: Significant Exposure</h4>
-      <p>You're running with real risk. This isn't a scare tactic — businesses your size get hit every day in Houston. The good news: most of these items can be addressed in 30-60 days with the right partner.</p>
+      <p>You're running with real risk. Businesses your size get hit every day in Houston. The good news: most of these can be addressed in 30-60 days with the right partner.</p>
     </div>
 
-    <div class="score-tier">
+    <div class="score-tier reveal">
       <h4>🔥 0–2 Checks: Call Someone Today</h4>
-      <p>This is urgent. You're operating without a safety net, and it's a matter of when — not if. Don't try to fix all 10 at once. Start with MFA, backups, and endpoint protection. Get help.</p>
+      <p>This is urgent. You're operating without a safety net. Start with MFA, backups, and endpoint protection. Get help.</p>
     </div>
 
-    <div class="cta-box">
+    <div class="cta-box reveal">
       <h3>Need Help Closing the Gaps?</h3>
-      <p>Book a free IT security assessment. We'll go through this checklist with you, identify your biggest risks, and give you a clear action plan. No pitch, no pressure — just answers.</p>
-      <a href="https://www.otherguys.tech/managed-it-sales-call" class="cta-btn">Book Your Free Assessment →</a>
+      <p>Book a free IT security assessment. We'll go through this checklist with you, identify your biggest risks, and give you a clear action plan. No pitch, no pressure.</p>
+      <a href="https://tidycal.com/kareem2/it-consulting-sales-call-120251218182501" class="cta-btn">Book Your Free Assessment →</a>
     </div>
 
-    <div class="footer-note">
+    <div class="footer-note reveal">
       <p><strong>Other Guys IT</strong> — Not Your Average IT Guys<br>
-      The Woodlands, TX &nbsp;|&nbsp; (972) 244-3009 &nbsp;|&nbsp; otherguys.tech</p>
+      The Woodlands, TX &nbsp;·&nbsp; (972) 244-3009 &nbsp;·&nbsp; otherguys.tech</p>
       <p style="margin-top:8px;">© 2026 Other Guys IT. Free to share. If this helped you, pass it to another business owner.</p>
     </div>
   </div>
 </div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
