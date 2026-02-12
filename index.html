@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Other Guys IT — Managed IT Services in The Woodlands & Houston TX</title>
+<meta name="description" content="Flat-rate managed IT for Houston & The Woodlands SMBs. $100/team member/month. 24/7 support, cybersecurity, cloud backup. Book a free consultation.">
+
+<!-- Google Ads Global Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17090690251"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-17090690251');
+</script>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-dark: #1a1a2e;
+  --bg-mid: #16213e;
+  --accent: #2980b9;
+  --accent-hover: #3498db;
+  --text: #e8e8f0;
+  --text-muted: #a0a0b8;
+  --white: #ffffff;
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Phone Bar ── */
+.phone-bar {
+  background: var(--accent);
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.3px;
+}
+.phone-bar a { color: var(--white); text-decoration: none; }
+.phone-bar a:hover { text-decoration: underline; }
+
+/* ── Logo Strip ── */
+.logo-strip {
+  padding: 20px 24px;
+  text-align: center;
+  background: var(--bg-dark);
+  border-bottom: 1px solid var(--card-border);
+}
+.logo-strip .brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+.logo-strip .brand span { color: var(--accent); }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(170deg, var(--bg-mid) 0%, var(--bg-dark) 100%);
+  padding: 80px 24px 72px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  max-width: 760px;
+  margin: 0 auto 20px;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .sub {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 36px;
+  line-height: 1.5;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 700;
+  padding: 16px 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+  border: none;
+}
+.cta-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.hero .micro {
+  display: block;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Sections ── */
+section { padding: 72px 24px; }
+section:nth-child(even) { background: var(--bg-mid); }
+section:nth-child(odd) { background: var(--bg-dark); }
+
+.section-label {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 48px;
+  line-height: 1.2;
+}
+
+/* ── Pain Points ── */
+.pains {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pain {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.pain .icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+.pain p { font-size: 15px; color: var(--text); }
+.pain strong { color: var(--white); }
+
+/* ── Service Cards ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.svc-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.svc-card:hover { border-color: var(--accent); }
+.svc-card .icon { font-size: 40px; margin-bottom: 16px; display: block; }
+.svc-card h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.svc-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+/* ── Why Us ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.why-item { text-align: center; }
+.why-item .num {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.why-item h3 { font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.why-item p { font-size: 14px; color: var(--text-muted); max-width: 260px; margin: 0 auto; }
+
+/* ── Testimonials ── */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.review-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 32px 28px;
+}
+.review-card .stars { color: #f5b731; font-size: 18px; margin-bottom: 14px; }
+.review-card blockquote {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.review-card .author { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+
+/* ── Pricing ── */
+.pricing-box {
+  max-width: 640px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(41,128,185,0.12), rgba(41,128,185,0.04));
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  padding: 48px 40px;
+  text-align: center;
+}
+.pricing-box .price {
+  font-size: clamp(40px, 6vw, 56px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+.pricing-box .price span { font-size: 20px; font-weight: 400; color: var(--text-muted); }
+.pricing-box .per { font-size: 16px; color: var(--text-muted); margin-bottom: 28px; }
+.includes {
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto 32px;
+}
+.includes li {
+  list-style: none;
+  padding: 8px 0;
+  font-size: 15px;
+  color: var(--text);
+  border-bottom: 1px solid var(--card-border);
+}
+.includes li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+
+/* ── FAQ ── */
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--card-border);
+  padding: 24px 0;
+}
+.faq-item summary {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-item summary::after { content: "+"; font-size: 22px; color: var(--accent); }
+.faq-item[open] summary::after { content: "−"; }
+.faq-item p { margin-top: 12px; font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+/* ── CTA Final ── */
+.final-cta {
+  background: linear-gradient(170deg, var(--bg-mid), var(--bg-dark)) !important;
+  text-align: center;
+}
+.final-cta h2 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.final-cta .sub { color: var(--text-muted); margin-bottom: 40px; font-size: 17px; }
+.final-cta iframe { border-radius: 12px; max-width: 100%; }
+
+/* ── Footer ── */
+footer {
+  background: #0f0f1e;
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 600px) {
+  section { padding: 56px 16px; }
+  .pricing-box { padding: 36px 24px; }
+  .hero { padding: 56px 16px 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Phone Bar -->
+<div class="phone-bar">
+  📞 Talk to a real human now: <a href="tel:9722443009" onclick="trackConversion()">(972) 244-3009</a>
+</div>
+
+<!-- Logo -->
+<div class="logo-strip">
+  <div class="brand">Other Guys <span>IT</span></div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Your IT Provider Doesn't Pick Up the Phone.<br><em>We Do.</em></h1>
+  <p class="sub">Flat-rate managed IT for Houston &amp; The Woodlands businesses. No surprise bills. No hold music. No excuses.</p>
+  <a href="#book" class="cta-btn" onclick="trackConversion()">Book Your Free IT Assessment →</a>
+  <small class="micro">30-minute call · No commitment · We'll tell you if you even need us</small>
+</div>
+
+<!-- Is This You? -->
+<section>
+  <div class="container">
+    <p class="section-label">Sound Familiar?</p>
+    <h2 class="section-title">Is This You Right Now?</h2>
+    <div class="pains">
+      <div class="pain"><span class="icon">🕐</span><p><strong>You submitted a ticket 3 days ago</strong> and you're still waiting for someone to acknowledge it exists.</p></div>
+      <div class="pain"><span class="icon">😰</span><p><strong>You're not sure if your data is backed up</strong> — and the thought of ransomware keeps you up at night.</p></div>
+      <div class="pain"><span class="icon">💸</span><p><strong>Your IT bill changes every month</strong> and nobody can explain why it went up $2,000 in March.</p></div>
+      <div class="pain"><span class="icon">🤷</span><p><strong>You call your IT guy and get voicemail.</strong> Every. Single. Time. Then a callback 48 hours later.</p></div>
+      <div class="pain"><span class="icon">🏥</span><p><strong>You need HIPAA compliance</strong> but your current provider just shrugs and says "you're probably fine."</p></div>
+      <div class="pain"><span class="icon">🔥</span><p><strong>You're the unofficial IT department</strong> even though you were hired to run the business, not fix printers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- What We Do -->
+<section>
+  <div class="container">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Everything Your Business Needs to Stay Running</h2>
+    <div class="services-grid">
+      <div class="svc-card">
+        <span class="icon">🛡️</span>
+        <h3>Managed IT &amp; Support</h3>
+        <p>24/7 monitoring, helpdesk, and on-site support. We catch problems before you notice them.</p>
+      </div>
+      <div class="svc-card">
+        <span class="icon">🔒</span>
+        <h3>Cybersecurity</h3>
+        <p>Endpoint protection, threat detection, employee training, and incident response. Sleep better tonight.</p>
+      </div>
+      <div class="svc-card">
+        <span class="icon">☁️</span>
+        <h3>Cloud &amp; Backup</h3>
+        <p>Automatic cloud backups, disaster recovery, and migration. Your data survives anything.</p>
+      </div>
+      <div class="svc-card">
+        <span class="icon">📞</span>
+        <h3>VoIP &amp; Network</h3>
+        <p>Business phone systems and rock-solid network infrastructure designed for zero downtime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Us -->
+<section>
+  <div class="container">
+    <p class="section-label">Why Other Guys IT</p>
+    <h2 class="section-title">Not Your Average IT Guys</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="num">$100</div>
+        <h3>Flat Rate Per Person</h3>
+        <p>No hidden fees. No "project" surcharges. One price, everything included.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">24/7</div>
+        <h3>Real Human Support</h3>
+        <p>Call us at 2 AM on a Saturday. Someone picks up. That's the promise.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">15min</div>
+        <h3>Average Response Time</h3>
+        <p>Not 15 hours. Not "next business day." Fifteen minutes or less.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">Local</div>
+        <h3>Houston &amp; The Woodlands</h3>
+        <p>We're your neighbors, not a call center in another time zone. On-site when you need it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof -->
+<section>
+  <div class="container">
+    <p class="section-label">What Clients Say</p>
+    <h2 class="section-title">Businesses That Switched &amp; Never Looked Back</h2>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We switched from a big-name MSP and the difference was night and day. Our tickets get resolved the same day — sometimes within the hour. And the flat rate? Game changer for budgeting."</blockquote>
+        <div class="author">— Dr. Sarah M., Medical Practice (The Woodlands)</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I used to dread calling our IT company because I knew I'd be on hold for 20 minutes. Now I text Kareem directly and it's handled. It feels like having an in-house team without the overhead."</blockquote>
+        <div class="author">— James R., Logistics Company (Houston)</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"They found security gaps our last provider missed for two years. Set up proper backups, got us HIPAA compliant, and our monthly bill actually went down. Can't recommend them enough."</blockquote>
+        <div class="author">— Michelle T., Dental Office (Spring, TX)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section>
+  <div class="container">
+    <p class="section-label">Simple Pricing</p>
+    <h2 class="section-title">One Price. Everything Included. No Surprises.</h2>
+    <div class="pricing-box">
+      <div class="price">$100<span>/mo</span></div>
+      <div class="per">per team member</div>
+      <ul class="includes">
+        <li>24/7 monitoring &amp; helpdesk support</li>
+        <li>Cybersecurity &amp; endpoint protection</li>
+        <li>Cloud backup &amp; disaster recovery</li>
+        <li>On-site support when needed</li>
+        <li>VoIP &amp; network management</li>
+        <li>HIPAA compliance (healthcare clients)</li>
+        <li>Employee security awareness training</li>
+        <li>Vendor management (we deal with your software vendors)</li>
+      </ul>
+      <a href="#book" class="cta-btn" onclick="trackConversion()">See If We're a Fit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title">Straight Answers. No Jargon.</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Is there a long-term contract?</summary>
+        <p>No. We do month-to-month. If we're not delivering, you shouldn't be locked in. That said, most clients stay for years — because we actually do the work.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What size businesses do you work with?</summary>
+        <p>Typically 5 to 100 employees. That's the sweet spot where you need real IT but can't justify a full-time hire. Think law firms, medical practices, warehouses, and professional services.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens during onboarding?</summary>
+        <p>We do a full audit of your current setup — network, devices, security, backups. We document everything, fix immediate risks, and get monitoring in place. Most clients are fully onboarded within 2 weeks.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you come on-site or is everything remote?</summary>
+        <p>Both. Most issues resolve remotely in minutes, but we come on-site whenever needed — hardware installs, network work, or if you just prefer a face-to-face. No extra charge.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can you help with HIPAA compliance?</summary>
+        <p>Yes. We work with medical and dental practices across The Woodlands and Houston. We handle the technical safeguards, documentation, and risk assessments HIPAA requires.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if we already have an IT person?</summary>
+        <p>Great — we work alongside them. We handle the monitoring, security, and overflow so your internal person can focus on strategic projects instead of putting out fires all day.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA + Booking -->
+<section class="final-cta" id="book">
+  <div class="container">
+    <h2>Let's Find Out If We're the Right Fit</h2>
+    <p class="sub">Pick a time below. 30 minutes. No pitch deck. Just an honest conversation about your IT.</p>
+    <iframe src="https://tidycal.com/kareem2/it-consulting-sales-call-120251218182501" width="100%" height="800" frameborder="0" style="border:none;"></iframe>
+    <p style="margin-top: 32px; color: var(--text-muted); font-size: 15px;">
+      Prefer to talk now? Call <a href="tel:9722443009" style="color: var(--accent); font-weight: 700; text-decoration: none;" onclick="trackConversion()">(972) 244-3009</a>
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Other Guys IT · The Woodlands &amp; Houston, TX · <a href="tel:9722443009">(972) 244-3009</a></p>
+  <p style="margin-top: 8px;"><a href="https://www.otherguys.tech">otherguys.tech</a></p>
+</footer>
+
+<script>
+function trackConversion() {
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {'send_to': 'AW-17090690251/1dCHCJa9rs0aEMv5vNU_'});
+  }
+}
+</script>
+
+</body>
+</html>

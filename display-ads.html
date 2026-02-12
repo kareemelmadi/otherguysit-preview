@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Other Guys IT — Display Ad Banners</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1e293b;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+
+  h2 {
+    color: #94a3b8;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: -30px;
+  }
+
+  /* ===== SHARED BANNER STYLES ===== */
+  .banner {
+    background: #0a1628;
+    border: 1px solid #1a2d4a;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .banner .brand {
+    font-weight: 800;
+    color: #f1f5f9;
+    letter-spacing: -0.02em;
+  }
+
+  .banner .brand span { color: #60a5fa; }
+
+  .banner .headline {
+    color: #f1f5f9;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .banner .sub {
+    color: #94a3b8;
+  }
+
+  .banner .cta-btn {
+    background: #3b82f6;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .banner .cta-btn:hover { background: #2563eb; }
+
+  .banner .accent-line {
+    position: absolute;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  }
+
+  /* ===== 300x250 MEDIUM RECTANGLE ===== */
+  .banner-300x250 {
+    width: 300px;
+    height: 250px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .banner-300x250 .accent-line {
+    top: 0; left: 0; right: 0; height: 3px;
+  }
+
+  .banner-300x250 .brand {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .banner-300x250 .headline {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .banner-300x250 .sub {
+    font-size: 12px;
+    margin-bottom: auto;
+  }
+
+  .banner-300x250 .cta-btn {
+    font-size: 13px;
+    padding: 10px 20px;
+    align-self: flex-start;
+  }
+
+  /* ===== 728x90 LEADERBOARD ===== */
+  .banner-728x90 {
+    width: 728px;
+    height: 90px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .banner-728x90 .accent-line {
+    left: 0; top: 0; bottom: 0; width: 4px;
+  }
+
+  .banner-728x90 .brand {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .banner-728x90 .divider {
+    width: 1px;
+    height: 40px;
+    background: #1a2d4a;
+    flex-shrink: 0;
+  }
+
+  .banner-728x90 .headline {
+    font-size: 20px;
+    flex: 1;
+  }
+
+  .banner-728x90 .cta-btn {
+    font-size: 12px;
+    padding: 10px 22px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ===== 160x600 WIDE SKYSCRAPER ===== */
+  .banner-160x600 {
+    width: 160px;
+    height: 600px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .banner-160x600 .accent-line {
+    top: 0; left: 0; right: 0; height: 3px;
+  }
+
+  .banner-160x600 .brand {
+    font-size: 11px;
+    margin-bottom: 30px;
+  }
+
+  .banner-160x600 .icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .banner-160x600 .headline {
+    font-size: 18px;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+
+  .banner-160x600 .sub {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: auto;
+  }
+
+  .banner-160x600 .price {
+    font-size: 24px;
+    font-weight: 900;
+    color: #60a5fa;
+    margin-bottom: 4px;
+  }
+
+  .banner-160x600 .price-sub {
+    font-size: 10px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+
+  .banner-160x600 .cta-btn {
+    font-size: 11px;
+    padding: 10px 16px;
+    width: 100%;
+  }
+
+  /* ===== 320x50 MOBILE BANNER ===== */
+  .banner-320x50 {
+    width: 320px;
+    height: 50px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .banner-320x50 .accent-line {
+    left: 0; top: 0; bottom: 0; width: 3px;
+  }
+
+  .banner-320x50 .headline {
+    font-size: 12px;
+    flex: 1;
+    font-weight: 700;
+  }
+
+  .banner-320x50 .cta-btn {
+    font-size: 10px;
+    padding: 7px 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- 300x250 Medium Rectangle -->
+<h2>300×250 — Medium Rectangle</h2>
+<div class="banner banner-300x250">
+  <div class="accent-line"></div>
+  <div class="brand">OTHER GUYS <span>IT</span></div>
+  <div class="headline">Is Your IT Provider Ghosting You?</div>
+  <div class="sub">Houston businesses deserve IT support that picks up the phone.</div>
+  <button class="cta-btn">Get a Free Assessment →</button>
+</div>
+
+<!-- 728x90 Leaderboard -->
+<h2>728×90 — Leaderboard</h2>
+<div class="banner banner-728x90">
+  <div class="accent-line"></div>
+  <div class="brand">OTHER GUYS <span>IT</span></div>
+  <div class="divider"></div>
+  <div class="headline">Houston IT Support That Actually Shows Up</div>
+  <button class="cta-btn">Book Free Assessment</button>
+</div>
+
+<!-- 160x600 Wide Skyscraper -->
+<h2>160×600 — Wide Skyscraper</h2>
+<div class="banner banner-160x600">
+  <div class="accent-line"></div>
+  <div class="brand">OTHER GUYS <span>IT</span></div>
+  <div class="icon">💸</div>
+  <div class="headline">Stop Overpaying for IT That Doesn't Work</div>
+  <div class="sub">All-inclusive managed IT for Houston SMBs. No surprises. No excuses.</div>
+  <div class="price">$100</div>
+  <div class="price-sub">/user/month — everything included</div>
+  <button class="cta-btn">See What's Included →</button>
+</div>
+
+<!-- 320x50 Mobile Banner -->
+<h2>320×50 — Mobile Banner</h2>
+<div class="banner banner-320x50">
+  <div class="accent-line"></div>
+  <div class="headline">Free IT Assessment — Book Now</div>
+  <button class="cta-btn">Book Now</button>
+</div>
+
+</body>
+</html>

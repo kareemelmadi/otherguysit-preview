@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Houston SMB IT Security Checklist — Other Guys IT</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --navy: #0a1628;
+    --navy-light: #121f36;
+    --navy-mid: #1a2d4a;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --white: #f1f5f9;
+    --gray: #94a3b8;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --green: #22c55e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @media print {
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: avoid; }
+    body { background: var(--navy); }
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    min-height: 100vh;
+  }
+
+  /* COVER PAGE */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  .cover .logo-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 40px;
+  }
+
+  .cover h1 {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--white), var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cover .subtitle {
+    font-size: 20px;
+    color: var(--gray);
+    margin-bottom: 60px;
+    font-weight: 400;
+  }
+
+  .cover .tagline {
+    font-size: 13px;
+    color: var(--accent-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-top: 1px solid var(--navy-mid);
+    padding-top: 30px;
+    margin-top: auto;
+  }
+
+  .cover .site {
+    font-size: 14px;
+    color: var(--gray);
+    margin-top: 8px;
+  }
+
+  /* CHECKLIST ITEMS */
+  .section-header {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .section-intro {
+    color: var(--gray);
+    font-size: 15px;
+    margin-bottom: 40px;
+    max-width: 600px;
+  }
+
+  .checklist-item {
+    background: var(--navy-light);
+    border: 1px solid var(--navy-mid);
+    border-radius: 12px;
+    padding: 28px 30px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .checklist-item .number {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--accent);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .checklist-item h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .checklist-item .risk {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .risk-high { background: rgba(239,68,68,0.15); color: var(--red); }
+  .risk-med { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .risk-low { background: rgba(34,197,94,0.15); color: var(--green); }
+
+  .checklist-item .why {
+    font-size: 13px;
+    color: var(--accent-light);
+    font-weight: 600;
+    margin: 8px 0 4px;
+  }
+
+  .checklist-item p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  .checkbox-row {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  .checkbox-row .box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--navy-mid);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* SCORE PAGE */
+  .score-section {
+    text-align: center;
+    padding-top: 40px;
+  }
+
+  .score-section h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .score-section .intro {
+    color: var(--gray);
+    margin-bottom: 40px;
+    font-size: 15px;
+  }
+
+  .score-tier {
+    background: var(--navy-light);
+    border: 1px solid var(--navy-mid);
+    border-radius: 12px;
+    padding: 24px 30px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .score-tier h4 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .score-tier p {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--accent), #2563eb);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .cta-box h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .cta-box p {
+    font-size: 15px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: white;
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .cta-btn:hover { opacity: 0.95; }
+
+  .footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--navy-mid);
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="page cover">
+  <div class="logo-text">Other Guys IT</div>
+  <h1>The Houston SMB<br>IT Security Checklist</h1>
+  <p class="subtitle">10 things every small business should check — today.</p>
+  <div style="flex:1"></div>
+  <p class="tagline">Not Your Average IT Guys</p>
+  <p class="site">otherguys.tech &nbsp;|&nbsp; (972) 244-3009 &nbsp;|&nbsp; The Woodlands, TX</p>
+</div>
+
+<!-- CHECKLIST PAGE 1: Items 1-5 -->
+<div class="page">
+  <h2 class="section-header">The Checklist</h2>
+  <p class="section-intro">Go through each item honestly. Check the box if you're confident it's handled. No check = action item. Simple as that.</p>
+
+  <div class="checklist-item">
+    <div class="number">1</div>
+    <h3>Password Policies <span class="risk risk-high">🔴 High Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>Weak or reused passwords are the #1 way attackers get into business systems. If your team is using "Company2024!" across multiple platforms, you're one breach away from a very bad week. Enforce minimum 14-character passwords, ban common patterns, and require a password manager company-wide — not optional, mandatory.</p>
+    <div class="checkbox-row"><div class="box"></div> We enforce a password policy with complexity requirements and a password manager.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">2</div>
+    <h3>Multi-Factor Authentication <span class="risk risk-high">🔴 High Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>MFA blocks over 99% of automated account compromise attacks. If someone gets your password, MFA is the lock on the second door. Enable it on every account that supports it — email, cloud apps, VPN, banking. Use authenticator apps or hardware keys; SMS codes are better than nothing but not great.</p>
+    <div class="checkbox-row"><div class="box"></div> MFA is enabled on all critical business accounts (email, cloud, banking, admin portals).</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">3</div>
+    <h3>Endpoint Protection <span class="risk risk-high">🔴 High Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>Every laptop, desktop, and phone that touches your network is an entry point. Free antivirus isn't cutting it in 2026. You need EDR (Endpoint Detection & Response) that monitors behavior, not just known signatures. Make sure every device is enrolled, monitored, and has remote-wipe capability for when someone inevitably loses a laptop.</p>
+    <div class="checkbox-row"><div class="box"></div> All company devices have managed EDR/antivirus with centralized monitoring.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">4</div>
+    <h3>Backup Strategy <span class="risk risk-high">🔴 High Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>Ransomware doesn't care how big your company is. If you can't restore from backup, you're either paying or starting over. Follow the 3-2-1 rule: 3 copies of data, on 2 different media types, with 1 offsite. Test your restores quarterly — a backup you've never tested is a backup that doesn't exist.</p>
+    <div class="checkbox-row"><div class="box"></div> We have automated backups with offsite/cloud copies and have tested a restore in the last 90 days.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">5</div>
+    <h3>Firewall Configuration <span class="risk risk-med">🟡 Medium Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>A firewall that was set up three years ago and never touched since is barely better than no firewall. Rules drift, ports get opened for "temporary" reasons and never closed, and firmware goes unpatched. Review your firewall rules quarterly, enable intrusion prevention, and make sure logging is actually turned on and being reviewed.</p>
+    <div class="checkbox-row"><div class="box"></div> Firewall rules have been reviewed in the last 90 days and firmware is current.</div>
+  </div>
+</div>
+
+<!-- CHECKLIST PAGE 2: Items 6-10 -->
+<div class="page">
+
+  <div class="checklist-item">
+    <div class="number">6</div>
+    <h3>Email Security <span class="risk risk-high">🔴 High Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>90% of cyberattacks start with an email. Phishing has gotten scary good — AI-generated emails that look exactly like your vendor's invoices. Deploy SPF, DKIM, and DMARC records (ask your IT person — they'll know). Layer on advanced threat protection that scans links and attachments before they hit inboxes.</p>
+    <div class="checkbox-row"><div class="box"></div> SPF/DKIM/DMARC are configured and we use advanced email threat filtering.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">7</div>
+    <h3>Employee Security Training <span class="risk risk-med">🟡 Medium Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>Your team is either your strongest defense or your biggest vulnerability. Annual training doesn't work — people forget everything by February. Run monthly phishing simulations and short micro-trainings. When someone clicks a test phish, that's not a punishment moment — it's a coaching moment. Build the culture, don't just check the box.</p>
+    <div class="checkbox-row"><div class="box"></div> Employees complete regular security awareness training with phishing simulations.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">8</div>
+    <h3>HIPAA / Compliance Basics <span class="risk risk-med">🟡 Medium Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>If you're in healthcare, legal, or finance in Houston, you're probably handling protected data whether you realize it or not. HIPAA fines start at $100 per violation and scale to $1.5M per category per year. At minimum: encrypt data at rest and in transit, control access with role-based permissions, and document everything. If you're not sure whether HIPAA applies to you, it probably does.</p>
+    <div class="checkbox-row"><div class="box"></div> We've assessed our compliance requirements and have documented policies in place.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">9</div>
+    <h3>Patch Management <span class="risk risk-med">🟡 Medium Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>Unpatched software is an open invitation. The average time between a vulnerability being disclosed and an exploit appearing is now under 15 days. Automate OS and application patching on a weekly cycle, with critical patches deployed within 48 hours. Track compliance — if even one machine is behind, that's the one that gets hit.</p>
+    <div class="checkbox-row"><div class="box"></div> OS and application patches are automated and deployed within defined SLAs.</div>
+  </div>
+
+  <div class="checklist-item">
+    <div class="number">10</div>
+    <h3>Incident Response Plan <span class="risk risk-med">🟡 Medium Risk</span></h3>
+    <p class="why">Why it matters:</p>
+    <p>When (not if) something goes wrong, panic is not a plan. You need a documented, tested playbook: who gets called first, how do you contain the breach, who talks to customers, where are the recovery procedures. Run a tabletop exercise with your team at least once a year. The companies that recover fast are the ones that practiced.</p>
+    <div class="checkbox-row"><div class="box"></div> We have a written incident response plan and have rehearsed it in the last 12 months.</div>
+  </div>
+
+</div>
+
+<!-- SCORE PAGE -->
+<div class="page">
+  <div class="score-section">
+    <h2>How'd You Score?</h2>
+    <p class="intro">Count your checkboxes. Be honest — this is for you, not us.</p>
+
+    <div class="score-tier">
+      <h4>✅ 9–10 Checks: You're in Great Shape</h4>
+      <p>You're ahead of 90% of Houston SMBs. Keep it up — security is maintenance, not a one-time project. Consider a penetration test to validate your defenses.</p>
+    </div>
+
+    <div class="score-tier">
+      <h4>⚠️ 6–8 Checks: Solid Foundation, Real Gaps</h4>
+      <p>You've got the basics but there are holes that an attacker will find before you do. Prioritize your unchecked items by risk level — reds first. A quick assessment can help you build a 90-day roadmap.</p>
+    </div>
+
+    <div class="score-tier">
+      <h4>🚨 3–5 Checks: Significant Exposure</h4>
+      <p>You're running with real risk. This isn't a scare tactic — businesses your size get hit every day in Houston. The good news: most of these items can be addressed in 30-60 days with the right partner.</p>
+    </div>
+
+    <div class="score-tier">
+      <h4>🔥 0–2 Checks: Call Someone Today</h4>
+      <p>This is urgent. You're operating without a safety net, and it's a matter of when — not if. Don't try to fix all 10 at once. Start with MFA, backups, and endpoint protection. Get help.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Need Help Closing the Gaps?</h3>
+      <p>Book a free IT security assessment. We'll go through this checklist with you, identify your biggest risks, and give you a clear action plan. No pitch, no pressure — just answers.</p>
+      <a href="https://www.otherguys.tech/managed-it-sales-call" class="cta-btn">Book Your Free Assessment →</a>
+    </div>
+
+    <div class="footer-note">
+      <p><strong>Other Guys IT</strong> — Not Your Average IT Guys<br>
+      The Woodlands, TX &nbsp;|&nbsp; (972) 244-3009 &nbsp;|&nbsp; otherguys.tech</p>
+      <p style="margin-top:8px;">© 2026 Other Guys IT. Free to share. If this helped you, pass it to another business owner.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
